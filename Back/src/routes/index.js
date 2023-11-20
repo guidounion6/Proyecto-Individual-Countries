@@ -1,8 +1,12 @@
-const express = require ('express')
-const server = express()
-const morgan  = require('morgan')
+const express = require('express')
+const morgan = require('morgan')
+const router = require('express').Router();
 
-server.use(morgan('dev'))
-server.use(express.json())
 
-module.exports = server;
+router.use(morgan('dev'))
+router.use(express.json())
+
+// router.use('/users', userRouter)
+// router.use('/posts', postsRouter)
+
+module.exports = router; 
