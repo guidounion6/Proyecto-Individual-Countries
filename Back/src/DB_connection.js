@@ -14,8 +14,14 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
 CountryModel(sequelize)
 ActivityModel(sequelize)
 
+const {Country, Activity} = sequelize.models
+
+Country.belongsToMany(Activity, {through: 'country_activity'})
+Activity.belongsToMany(Country, {through: 'country_activity'})
 
 module.exports = {
+   Country,
+   Activity,
  conn: sequelize,
 };
 

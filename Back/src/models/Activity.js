@@ -6,8 +6,8 @@ module.exports = (sequelize) => {
   sequelize.define('Activity', {
     id: {
       type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true
+      autoIncrement: true,
+      primaryKey: true
 
     },
     name: {
@@ -16,11 +16,14 @@ module.exports = (sequelize) => {
     },
     dificultad: {
       type: DataTypes.STRING,
-        allowNull: false
-
+        allowNull: false,
+        validate: {
+          min:1, 
+          max:5
+        }
     },
     duración: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
         allowNull: false
 
     },

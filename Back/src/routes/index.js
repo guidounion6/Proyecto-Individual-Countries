@@ -1,12 +1,16 @@
-const express = require('express')
-const morgan = require('morgan')
+const { getAllCountries } = require('../controllers/Countries/getAllCountries')
+const { getCountriesByName } = require('../controllers/Countries/getCountriesByName')
+const { getCountriesById } = require('../controllers/Countries/getCountriesById')
+const { postActivities } = require('../controllers/Activities/postActivities')
+const { getActivities } = require('../controllers/Activities/getActivities')
+
 const router = require('express').Router();
 
+router.get('/countries', getAllCountries)
+router.get('/countries/:idPais', getCountriesById)
+router.get('/countries/name', getCountriesByName)
+router.post('/activities', postActivities)
+router.get('/activities', getActivities)
 
-router.use(morgan('dev'))
-router.use(express.json())
 
-// router.use('/users', userRouter)
-// router.use('/posts', postsRouter)
-
-module.exports = router; 
+module.exports = router
