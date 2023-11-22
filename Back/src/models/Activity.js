@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
           max:5
         }
     },
-    duración: {
+    duracion: {
       type: DataTypes.INTEGER,
         allowNull: false
 

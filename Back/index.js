@@ -1,10 +1,24 @@
 const axios = require('axios')
 const server = require('./src/server')
-const { conn } = require('./src/DB_connection')
-const PORT = 5000
+const { conn } = require('./src/sync/DB_connection')
+const {syncAPItoDB} = require('./src/sync/syncAPItoDB')
+const PORT = 3001
 
-conn.sync({force:true}).then(()=>{
-    server.listen(PORT, ()=>{
+
+   
+//servidor levantado esperando la respuesta del try/catch
+server.listen(PORT, async ()=>{
         console.log(`Servidor arriba mostro: ${PORT}`)
-    })
-}).catch(error => console.log(error) )
+ 
+
+try { 
+
+    await conn.sync({force:true})
+    console.log('Aca Databeisiamo todo')
+
+    await syncAPItoDB()
+
+} catch (error) {
+    console.log('No se sincronizo la DB amiwo', error)
+    
+}})

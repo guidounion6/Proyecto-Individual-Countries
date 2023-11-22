@@ -1,8 +1,8 @@
 const {Activity} = require('../../DB_connection')
  
-const getActivities = (req,res) =>{
+const getActivities = async() =>{
 
-   res.status(200).send('Aqui estan todas las actividades')
+   return await Activity.findAll()
 
 
 }
