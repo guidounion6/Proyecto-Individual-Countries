@@ -2,10 +2,10 @@ const { getCountriesById } = require("../../controllers/Countries/getCountriesBy
 
 const getCountriesByIdHandler = async (req, res) => {
 
-    const { id } = req.params
+    const { idPais } = req.params
 
     try {
-        const pais = await getCountriesById(id)
+        const pais = await getCountriesById(idPais.toUpperCase())
 
         res.status(200).json(pais)
 

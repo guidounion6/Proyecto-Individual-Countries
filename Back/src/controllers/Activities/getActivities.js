@@ -2,7 +2,7 @@ const {Activity} = require('../../sync/DB_connection')
  
 const getActivities = async() =>{
 
-   return await Activity.findAll()
+  return await Activity.findAll()
 
 
 }

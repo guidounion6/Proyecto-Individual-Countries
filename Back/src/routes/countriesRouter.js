@@ -5,12 +5,9 @@ const { getCountriesByNameHandler } = require('../handlers/Countries Handlers/ge
 const countriesRouter = Router()
 
 
-
-
-
 countriesRouter.get("/", getCountriesHandler)
+countriesRouter.get("/name", getCountriesByNameHandler)
 countriesRouter.get("/:idPais", getCountriesByIdHandler)
-countriesRouter.get("/name?=", getCountriesByNameHandler)
 
 
 module.exports = countriesRouter

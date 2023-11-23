@@ -1,10 +1,11 @@
 const {Country} = require('../../sync/DB_connection')
 
  
-const getCountriesById = async(id) =>{
+const getCountriesById = async (idPais) =>{
 
-   if (id)
-   return await Country.findOne({ where: { id: "id" } })
+   if (idPais)
+   {console.log(idPais)
+   return await Country.findOne({ where: { id: idPais } })}
    throw Error (`Has ingresado un id: ${id} equivocado`)
    
 }
