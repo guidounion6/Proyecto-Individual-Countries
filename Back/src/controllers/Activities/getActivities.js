@@ -1,4 +1,4 @@
-const {Activity} = require('../../DB_connection')
+const {Activity} = require('../../sync/DB_connection')
  
 const getActivities = async() =>{
 

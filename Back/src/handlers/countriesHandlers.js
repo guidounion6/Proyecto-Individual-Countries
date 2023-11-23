@@ -1,20 +1,44 @@
-const getCountriesHandler = (req, res) => {
+const { getAllCountries } = require("../controllers/Countries/getAllCountries")
+const { getCountriesById } = require("../controllers/Countries/getCountriesById")
+const { getCountriesByName } = require("../controllers/Countries/getCountriesByName")
 
-    res.status(200).send("aqui estan todos los paises")
+
+const getCountriesHandler = async (req, res) => {
+
+    try {
+        const countries = await getAllCountries()
+
+        res.status(200).json(countries)
+        
+    } catch (error) {
+        res.status(404).send(error.message)
+    }
 }
 
-const getCountriesByIdHandler = (req, res) => {
+const getCountriesByIdHandler = async (req, res) => {
 
-    const { id } = req.params
+    try {
+        const { id } = req.params
+        const pais = await getCountriesById(id)
+    
+        res.status(200).json(pais)
 
-    res.status(200).send(`Detalle del pais ${id}`)
+    } catch (error) {
+        res.status(404).send(error.message)
+    }
 }
 
-const getCountriesByNameHandler = (req, res) => {
+const getCountriesByNameHandler = async (req, res) => {
 
-    const { name } = req.query
+   try {
+     const { name } = req.query
+     const pais = await getCountriesByName(name)
+ 
+     res.status(200).json(`Tenemos un pais ${name}:`,pais)
+   } catch (error) {
+    res.status(404).send(error.message)
 
-    res.status(200).send(`Tenemos un pais ${name}`)
+   }
 }
 
 module.exports = {

@@ -1,10 +1,12 @@
-const {Country} = require('../../DB_connection')
+const {Country} = require('../../sync/DB_connection')
+
  
-const getCountriesById = (req,res) =>{
+const getCountriesById = async(id) =>{
 
-   res.status(200).send('Aqui estan todos los paises por id')
-
-
+   if (id)
+   return await Country.findOne({ where: { id: "id" } })
+   throw Error (`Has ingresado un id: ${id} equivocado`)
+   
 }
 
 module.exports = {getCountriesById}

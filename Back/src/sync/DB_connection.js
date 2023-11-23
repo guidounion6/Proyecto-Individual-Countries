@@ -10,7 +10,6 @@ const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}
    { logging: false, native: false }
 );
 
-
 CountryModel(sequelize)
 ActivityModel(sequelize)
 
@@ -20,7 +19,6 @@ Country.belongsToMany(Activity, {through: 'country_activity'})
 Activity.belongsToMany(Country, {through: 'country_activity'})
 
 module.exports = {
-   
    Country,
    Activity,
  conn: sequelize,

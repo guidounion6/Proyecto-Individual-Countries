@@ -16,10 +16,11 @@ const syncAPItoDB = async () =>{
                 id: country.cca3,
                 name: country.name.common, 
                 flags: country.flags.png,
-                continent: country.continents[0], 
+                continents: country.continents[0],
                 capital: country.capital && country.capital.length > 0 ? country.capital[0] : null,
-                area: country.area, 
-                population: country.population
+                area: country.area,  
+                population: country.population,
+                coatOfArms: country.coatOfArms.png
             })
         }
 
@@ -27,7 +28,7 @@ const syncAPItoDB = async () =>{
          
     } catch (error) {
         
-        console.log('No se pudio')
+        console.log('Error al sincronizar con la API:', error)
     }
 }
 
