@@ -1,7 +1,7 @@
 const { Router } = require('express')
+const { getAllActivitiesHandler } = require('../handlers/Activities Handlers/getAllActivitiesHandler')
+const { postActivitiesHandler } = require('../handlers/Activities Handlers/postActivitiesHandler')
 const activitiesRouter = Router()
-const { getAllActivitiesHandler, postActivitiesHandler } = require('../handlers/activitiesHandlers')
-
 
 
 activitiesRouter.get("/", getAllActivitiesHandler)

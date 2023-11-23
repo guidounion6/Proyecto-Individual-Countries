@@ -1,10 +1,11 @@
 const {Activity} = require('../../sync/DB_connection')
  
-const postActivities = (req,res) =>{
+const postActivities = async(name, dificultad, duracion, temporada) =>{
 
-   res.status(200).send('Aqui se generan nuevas actividades')
-
-
+   if (name && dificultad && duracion && temporada)  
+   {return await Activity.create(name, dificultad, duracion, temporada)}
+   throw Error ('Faltan datos por completar')
+   
 }
 
 module.exports = {postActivities}
