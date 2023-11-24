@@ -10,8 +10,8 @@ const postActivities = async (name, dificultad, duracion, temporada, idPais) =>{
                dificultad, 
                duracion,
                temporada,})
-              const pais = await Country.findOne({ where: { id: idPais } })
-              await post.addCountry(pais) 
+               const pais = await Country.findAll({ where: { id: idPais } })
+               await post.addCountry(pais) 
                const postPais = await Activity.findOne({
                    where: { id: post.id },
                    include: [

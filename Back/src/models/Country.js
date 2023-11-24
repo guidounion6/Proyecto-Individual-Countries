@@ -3,16 +3,16 @@ const { DataTypes } = require('sequelize');
 module.exports = (sequelize) => {
   
   sequelize.define('Country', {
+      id: {
+          type: DataTypes.STRING(3),
+          primaryKey:true,
+          allowNull: false
+        },
       name: {
         type: DataTypes.STRING,
         allowNull: false,
         unique: true
       },
-    id: {
-        type: DataTypes.STRING(3),
-        primaryKey:true,
-        allowNull: false
-    },
     capital: {
         type: DataTypes.STRING,
         allowNull: true,
