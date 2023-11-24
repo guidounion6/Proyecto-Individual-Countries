@@ -5,11 +5,11 @@ const  {Op} = require('sequelize')
 const getCountriesByName = async (name) =>{
    
    if (name){
-   const pais = await Country.findOne({ where: { name:
+   const pais = await Country.findAll({ where: { name:
       {[Op.iLike] :`%${name}%`} } })
     return pais
 }
-   throw Error (`Has ingresado un name: (${name}) equivocado`)
+   throw Error ("Has ingresado un nombre equivocado")
 }
 
 module.exports = {getCountriesByName}

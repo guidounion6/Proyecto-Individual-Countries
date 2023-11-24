@@ -6,6 +6,7 @@ const getCountriesByIdHandler = async (req, res) => {
 
     try {
         const pais = await getCountriesById(idPais.toUpperCase())
+        if(!pais) throw Error (`No existe pais con el id ${idPais}`)
 
         res.status(200).json(pais)
 

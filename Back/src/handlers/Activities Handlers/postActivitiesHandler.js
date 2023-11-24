@@ -3,10 +3,10 @@ const { postActivities } = require("../../controllers/Activities/postActivities"
 
 const postActivitiesHandler = async (req, res) => {
 
-    const { name, dificultad, duracion, temporada } = req.body
+    const { name, dificultad, duracion, temporada, idPais } = req.body
     
     try {
-        const activity = await postActivities(name, dificultad, duracion, temporada)
+        const activity = await postActivities(name, dificultad, duracion, temporada, idPais)
         
         res.status(200).json(activity)
 

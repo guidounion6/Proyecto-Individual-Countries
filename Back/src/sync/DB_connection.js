@@ -15,12 +15,11 @@ ActivityModel(sequelize)
 
 const {Country, Activity} = sequelize.models
 
-Country.belongsToMany(Activity, {through: 'country_activity'})
-Activity.belongsToMany(Country, {through: 'country_activity'})
+Country.belongsToMany(Activity, {through: 'country_activity', timestamps: false})
+Activity.belongsToMany(Country, {through: 'country_activity', timestamps: false})
 
 module.exports = {
-   Country,
-   Activity,
+   ...sequelize.models,
  conn: sequelize,
 };
 
