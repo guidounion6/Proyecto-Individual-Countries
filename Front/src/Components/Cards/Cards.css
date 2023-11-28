@@ -2,9 +2,10 @@
     width: 85vw;
     display: grid;
     background-color: transparent;
-   
+
     margin: 0 auto;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 20px;
 
 }
+

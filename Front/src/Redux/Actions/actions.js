@@ -22,13 +22,11 @@ export const getCountries = ()=> {
    
 }
 
-
-export const getCountriesByName = ()=> {
+export const getCountriesByName = (name)=> {
     try {
         const endpoint = (`http://localhost:3001/countries/name?name=${name}`)
         return async (dispatch)=>{
             const {data}= await axios.get(endpoint)
-            
             return dispatch({
                 type:"GET_BY_NAME",
                 payload: data

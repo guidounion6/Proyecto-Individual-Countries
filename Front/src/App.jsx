@@ -1,7 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
-import { getCountries, getCountriesByName } from '../src/Redux/Actions/actions'
-import {useEffect, useState} from 'react'
-import {useDispatch, useSelector} from 'react-redux'
+import { getCountriesByName } from '../src/Redux/Actions/actions'
+import { useState } from 'react'
+import { useDispatch, useSelector} from 'react-redux'
 
 
 
@@ -12,17 +12,16 @@ import Details from './Views/Details/Details';
 import NavBar from './Components/NavBar/NavBar';
 
 
-
-  
-
 const App = ()=> {
    
   const dispatch = useDispatch()
   const { pathname } = useLocation()
-  const [searchString, setSearchString] = useState("")
   
+  
+  const countries = useSelector((state)=> state.allCountries)
+  const [searchString, setSearchString] = useState("")
 
-  const handelChange = (event) => {
+  const handleChange = (event) => {
     event.preventDefault()
     setSearchString(event.target.value)
   }
@@ -33,14 +32,9 @@ const App = ()=> {
   }
 
 
-  useEffect(()=>{
-    dispatch(getCountries())
-  },[dispatch])
-
-
   return (
     <div>
-      {pathname !== '/' && <NavBar onClick={handleSubmit} onChange={handelChange} /> }
+      {pathname !== '/' && <NavBar handleSubmit={handleSubmit} handleChange={handleChange} /> }
          <Routes>
           <Route path='/' element={<Landing/>} />
           <Route path='home' element={<Home />} />
