@@ -8,7 +8,7 @@ import { useDispatch, useSelector} from 'react-redux'
 import Landing from './Views/Landing/Landing';
 import Home from './Views/Home/Home';
 import Form from './Views/Form/Form';
-import Details from './Views/Details/Details';
+import Detail from './Views/Details/Detail';
 import NavBar from './Components/NavBar/NavBar';
 
 
@@ -34,12 +34,12 @@ const App = ()=> {
 
   return (
     <div>
-      {pathname !== '/' && <NavBar handleSubmit={handleSubmit} handleChange={handleChange} /> }
+      {pathname !== '/' &&  <NavBar handleSubmit={handleSubmit} handleChange={handleChange}  />  }
          <Routes>
           <Route path='/' element={<Landing/>} />
           <Route path='home' element={<Home />} />
           <Route path='form' element={<Form/>} />
-          <Route path='/details/:id' element={<Details/>} />   
+          <Route path='/home/:id' element={<Detail/>} />   
          </Routes>
 
     </div>

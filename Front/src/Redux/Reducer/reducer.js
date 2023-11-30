@@ -21,6 +21,42 @@ const reducer = ( state = initialState, action) => {
         ...state, 
         allCountries: action.payload
       }
+
+      case "ORDER":
+        let orderCopy = [...state.allCountries]
+        if (action.payload === "A") {
+            orderCopy.sort(
+                (a, b) => {
+                    if (a.name > b.name) return 1;
+                    else return -1
+                }
+            )
+        } else if (action.payload === "D") {
+            orderCopy.sort(
+                (a, b) => {
+                    if (a.name < b.name) return 1;
+                    else return -1
+                }
+            )
+        }
+
+        return {
+            ...state,
+            allCountries: orderCopy
+        }
+
+        case "GET_BY_ID":
+        return {
+        ...state, 
+        countriesCopy: action.payload,
+        
+      }
+      case "CREATE_ACTIVITY":
+        return {
+          ...state,
+          allActivities: [...state.allActivities, action.payload]
+        }
+      
     default: 
      return state
    }

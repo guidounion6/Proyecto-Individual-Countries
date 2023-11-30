@@ -1,5 +1,7 @@
-.card-container {
+.id-container {
     display: flex; 
+    width: auto;
+    height: auto;
     flex-direction: column; 
     background-color: #98dada;
     border: 1px, solid, gray;
@@ -13,7 +15,6 @@
     box-shadow: 0px 0px 30px #000 ;   
 }
 
-.card-container:hover {
+.id-container:hover {
     transform: scale(1.05)
 }
-

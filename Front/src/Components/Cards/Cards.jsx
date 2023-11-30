@@ -1,22 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { getCountries } from '../../Redux/Actions/actions'
 import Card from '../Card/Card'
 import "./Cards.css"
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
 
 const Cards = ({allCountries}) => {
 
-   const countries = useSelector((state)=> state.allCountries)
+   const dispatch = useDispatch()
+   const countries = useSelector((state) => state.allCountries)
 
    const [currentPage, setCurrentPage] = useState(1)
    const countriesPerPage = 10
 
    const lastCountry = currentPage*countriesPerPage
    const firstCountry = lastCountry-countriesPerPage
-   const currentCountries = allCountries.slice(firstCountry, lastCountry)
-
    const total = countries.length
+   const currentCountries = allCountries.slice(firstCountry, lastCountry)
    
+
    const handlePage =(next)=>{
       setCurrentPage(next)
    }
@@ -26,7 +28,8 @@ const Cards = ({allCountries}) => {
       pageNumbers.push(i)
    }
 
-
+  
+  
  return (
    <div>
 

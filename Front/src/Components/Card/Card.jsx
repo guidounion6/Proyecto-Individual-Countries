@@ -6,7 +6,7 @@ const Card = ({id, name, flags, continents}) => {
 
   return (
     <div className='card-container' >
-      <Link to={`/details/${id}`}>
+      <Link to={`/home/${id}`}>
       <h1>{name}</h1>
       <h2>{continents}</h2>
       <img src={flags}/>
