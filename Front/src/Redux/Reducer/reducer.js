@@ -4,7 +4,9 @@ const initialState = {
     //llenar con los estados iniciales que necesite
     allCountries: [],
     countriesCopy: [],
-    allActivities: []
+    allActivities: [],
+    orderBy: false
+
 }
 
 const reducer = ( state = initialState, action) => {
@@ -20,19 +22,30 @@ const reducer = ( state = initialState, action) => {
       case "GET_BY_NAME":
         return {
         ...state, 
-        allCountries: action.payload
+        countriesCopy: action.payload
       }
       
       case "GET_BY_ID":
         return {
         ...state, 
         countriesCopy: action.payload,
-        
       }
 
-      case "ORDER":
+      case "SORT":
+
+      if ( action.payload === "Poblacion") 
+         { return {
+          ...state, 
+          orderBy: true
+        } }
+         return {
+          ...state, 
+          orderBy: false
+        }
         
-        let orderCopy = [...state.countriesCopy]
+      case "ORDER":
+        const orderCopy = [...state.countriesCopy]
+        if ( state.orderBy === false){
           if (action.payload === "A") {
             orderCopy.sort(
                 (a, b) => {
@@ -51,7 +64,28 @@ const reducer = ( state = initialState, action) => {
         return {
             ...state,
             countriesCopy: orderCopy
+        }}
+        if ( state.orderBy === true ) {
+          if (action.payload === "A") {
+            orderCopy.sort(
+                (a, b) => {
+                    if (a.population > b.population) return 1;
+                    else return -1
+                }
+            )
+        } else if (action.payload === "D") {
+            orderCopy.sort(
+                (a, b) => {
+                    if (a.population < b.population) return 1;
+                    else return -1
+                }
+            )
+      }
+        return {
+            ...state,
+            countriesCopy: orderCopy
         }
+      }
 
         case "FILTER": 
           if ( action.payload === "ALL" ) {
@@ -75,7 +109,6 @@ const reducer = ( state = initialState, action) => {
             countriesCopy: continentsOnly
           }
          }
-        
          if ( action.payload === "Activities" ) return {
           ...state,
           countriesCopy: state.allCountries

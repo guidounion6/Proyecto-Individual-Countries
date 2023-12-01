@@ -29,7 +29,6 @@ const Cards = ({allCountries}) => {
    }
 
   
-  
  return (
    <div>
 

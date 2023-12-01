@@ -93,6 +93,13 @@ import axios from 'axios'
     }
 }
 
+export const sortCountries = (sort) => {
+    return {
+        type: "SORT",
+        payload: sort
+    }
+}
+
  export const orderCountries = (order) => {
     return {
         type: "ORDER",

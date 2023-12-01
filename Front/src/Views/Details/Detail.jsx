@@ -13,7 +13,6 @@ const Details = () => {
 const { name, flags, continents, population, capital } = useSelector((state) => state.countriesCopy)
 
 
-
 const {id} = useParams() 
 const dispatch = useDispatch()
 

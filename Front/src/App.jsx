@@ -17,8 +17,6 @@ const App = ()=> {
   const dispatch = useDispatch()
   const { pathname } = useLocation()
   
-  
-  const countries = useSelector((state)=> state.allCountries)
   const [searchString, setSearchString] = useState("")
 
   const handleChange = (event) => {
