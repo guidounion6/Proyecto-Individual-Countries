@@ -1,8 +1,8 @@
-import React from 'react'
+import { React, useEffect } from 'react'
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { createActivity } from '../../Redux/Actions/actions'
+import { createActivity, getActivities } from '../../Redux/Actions/actions'
 import './Form.css'
 
 const Form = () => {
@@ -10,12 +10,13 @@ const Form = () => {
 const activities = useSelector((state)=> state.allActivities) 
 const dispatch = useDispatch()
 
+
 const [input, setInput] = useState({
   name: "",
   dificultad:"",
   duracion: "",
   temporada: "",
-  idPais: ""
+  idPais: []
 })
 
 const [error, setError] = useState({
@@ -26,30 +27,30 @@ const [error, setError] = useState({
   idPais: ""
 })
 
-// const validate = (input)=> {
+const validate = (input)=> {
 
-//   if(!/^[A-Za-z0-9\s\-_,\.;:()]+$/.test(input.name) ){
-//     setError({...error, name: 'Formato invalido'})
-//     return
-//   }  setError({...error, name:""})
+  if(!/^[A-Za-z0-9\s]+$/.test(input.name) ){
+    setError({...error, name: 'Formato invalido'})
+    return
+  }  setError({...error, name:""})
 
-//     if (!/[1-5]]/.test(input.dificultad && Number.isInteger(input.dificultad))){
-//       setError({...error, dificultad: 'Ingresa un entero entre 1 y 5'})
-//     } setError({...error, dificultad:""})
+    if (!/^[0-5]+$/.test(input.dificultad )&& Number.isInteger(input.dificultad) ){
+      setError({...error, dificultad: 'Ingresa un entero entre 1 y 5'})
+    } setError({...error, dificultad:""})
     
-//   if(!/^[0-100]+$/.test(input.duracion) && Number.isInteger(input.duracion)){
-//       setError({...error, duracion: 'Ingresa un entero entre 0 y 100'})
-//     } setError({...error, duracion:""})
+  if(!/^[0-100]+$/.test(input.duracion) && Number.isInteger(input.duracion)){
+      setError({...error, duracion: 'Ingresa un entero entre 0 y 100'})
+    } setError({...error, duracion: ""})
 
-//   if( input.temporada !=='Verano' || input.temporada !=='Otoño' || input.temporada !=='Invierno' || input.temporada !=='Primavera'){
-//     setError({...error, temporada: 'Elije alguna de las 4 estaciones'})
-//   } setError({...error, temporada:""})
+  // if( input.temporada !=='Verano' || input.temporada !=='Otoño' || input.temporada !=='Invierno' || input.temporada !=='Primavera'){
+  //   setError({...error, temporada: 'Elije alguna de las 4 estaciones'})
+  // } setError({...error, temporada:""})
 
-//   if(!/^[0-9]+$/.test(input.idPais)){
-//     console.log('Error en la duracion')
-//   } console.log('Haz tu dispatch')
+  // if(!/^[0-9]+$/.test(input.idPais)){
+  //   console.log('Error en la duracion')
+  // } console.log('Haz tu dispatch')
 
-// }
+}
 
 const handleChange = (event)=>{
   setInput({
@@ -62,14 +63,17 @@ const handleChange = (event)=>{
     })
 }
 
-const handleInput = (input)=>{
+const handleInput = (event)=>{
   dispatch(createActivity(input))
 }
 
+useEffect(()=>{
+  dispatch(getActivities())
+},[])
 
   return (
     <div>
-<form onSubmit={handleInput}>
+<form >
   <div>
     <label htmlFor='name'>Nombre: </label>
     <input  type='text' name="name" id="name" value={input.value} onChange={handleChange}/>
@@ -82,7 +86,7 @@ const handleInput = (input)=>{
   </div>
   <div>
     <label htmlFor="duracion">Duracion (en horas): </label>
-    <input name="duracion" id="duracion" type='number'  value={input.value} onChange={handleChange}/>
+    <input type='number' name="duracion" id="duracion"   value={input.value} onChange={handleChange}/>
     <span>{error.duracion}</span>
   </div>
   <div>
@@ -96,7 +100,7 @@ const handleInput = (input)=>{
     <span>{error.pais}</span>
   </div>
   {error.name  || error.dificultad || error.duracion || error.temporada || error.pais 
-  ? null : <button type='submit' className='boton'> 
+  ? null : <button type='submit' className='boton' onClick={handleInput} > 
            <span> Crear Actividad </span> 
            </button>}
   </form>

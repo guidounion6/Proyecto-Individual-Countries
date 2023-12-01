@@ -1,53 +1,50 @@
-import {React, useState} from 'react'
+import { React } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import SearchBar from '../SearchBar/Searchbar'
-import { orderCards } from '../../Redux/Actions/actions'
+import { orderCountries } from '../../Redux/Actions/actions'
+import FilterByContinent from '../Filtros/FilterByContinent/filterByContinent'
+
 import './NavBar.css'
 
 const NavBar = ({handleChange, handleSubmit}) => {
 
   const dispatch = useDispatch()
-  
-  const [orderBy, setOrderBy] = useState('');
-  const orderOptions = ['Nombre', 'Poblacion'];
-  
   const allCountries = useSelector((state) => state.allCountries)
+  
 
-  const handleType = (event) => {
-    setOrderBy(event.target.value);
- };
+
+const handleSort = (event) => {
+    dispatch(sortCountries(event))
+} 
 
  const handleOrder = (event) => {
-  dispatch(orderCards(event.target.value))
+   dispatch(orderCountries(event.target.value))
+   console.log(event.target.value)
 }
-  
+
+
   return (
-    <div >
-
-      <div>
-        <label htmlFor="order">
-          Ordenar por:
-          <select value={orderBy} onChange={handleType} name='order' id='order'>
-            <option value=""> - - </option>
-            {orderOptions.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-        </label>
-      </div>
-
-      <div>
-        
-        {allCountries.length == 0 || orderBy ==='' ? null : <select name="order" id="order" onChange={handleOrder} >
-          <option value="A">Ascendente</option>
-          <option value="D">Descendente </option>
-        </select>}
      
+  <div >
+        <SearchBar  handleChange={handleChange} handleSubmit={handleSubmit}  /> 
+        <FilterByContinent/>  
+      <div>
+      {allCountries.length == 0 ? null : 
+          <select name="sort" id="sort"  onChange={handleSort}>
+                    <option value="Alfabetico">Alfabeticamente</option>
+                    <option value="Poblacion">Por Poblacion</option>        
+          </select> }
+      </div>  
+
+      <div>
+        {allCountries.length == 0 ? null : 
+          <select name="order" id="order" onChange={handleOrder} >
+                   <option value="A">Ascendente</option>
+                   <option value="D">Descendente </option>
+          </select> }
       </div>
-        <SearchBar  handleChange={handleChange} handleSubmit={handleSubmit}  />
-      </div>
+        
+     </div>
     
   )
 }

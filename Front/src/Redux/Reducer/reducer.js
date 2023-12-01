@@ -1,4 +1,4 @@
-//import action types
+
 //definir initialState 
 const initialState = {
     //llenar con los estados iniciales que necesite
@@ -9,22 +9,31 @@ const initialState = {
 
 const reducer = ( state = initialState, action) => {
 
-   switch(action.type){
-    case "GET_COUNTRIES":
-      return {
+   switch(action.type)
+   {
+      case "GET_COUNTRIES":
+        return {
         ...state, 
         allCountries: action.payload,
         countriesCopy: action.payload
       }
       case "GET_BY_NAME":
-      return {
+        return {
         ...state, 
         allCountries: action.payload
       }
+      
+      case "GET_BY_ID":
+        return {
+        ...state, 
+        countriesCopy: action.payload,
+        
+      }
 
       case "ORDER":
-        let orderCopy = [...state.allCountries]
-        if (action.payload === "A") {
+        
+        let orderCopy = [...state.countriesCopy]
+          if (action.payload === "A") {
             orderCopy.sort(
                 (a, b) => {
                     if (a.name > b.name) return 1;
@@ -38,30 +47,58 @@ const reducer = ( state = initialState, action) => {
                     else return -1
                 }
             )
-        }
-
+      }
         return {
             ...state,
-            allCountries: orderCopy
+            countriesCopy: orderCopy
         }
 
-        case "GET_BY_ID":
-        return {
-        ...state, 
-        countriesCopy: action.payload,
+        case "FILTER": 
+          if ( action.payload === "ALL" ) {
+            const copia = state.allCountries
+              return {
+                ...state,
+                countriesCopy: copia
+          }
+        } 
+          if ( action.payload !== "Todos" & action.payload !== "Activities" ) {
+            if (action.payload === "Continents"){
+              const copia = state.allCountries
+                return {
+                  ...state,
+                  countriesCopy: copia
+          }
+        }
+          const continentsOnly = state.allCountries.filter((country) => country.continents === action.payload);
+          return {
+            ...state,
+            countriesCopy: continentsOnly
+          }
+         }
         
-      }
-      case "CREATE_ACTIVITY":
-        return {
+         if ( action.payload === "Activities" ) return {
           ...state,
-          allActivities: [...state.allActivities, action.payload]
+          countriesCopy: state.allCountries
         }
-      
-    default: 
-     return state
-   }
+        
+        case "GET_ACTIVITIES":
+          return {
+            ...state, 
+            allActivities: action.payload
+          }
+    
+          case "CREATE_ACTIVITY":
+            return {
+              ...state,
+              allActivities: [...state.allActivities, action.payload],
+            }
 
-   
+    default: 
+     return {
+      ...state
+    }
+
+  }
 
 }
 
