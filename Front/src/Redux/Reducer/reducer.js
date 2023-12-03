@@ -5,6 +5,7 @@ const initialState = {
     allCountries: [],
     countriesCopy: [],
     allActivities: [],
+    pais:[],
     orderBy: false
 
 }
@@ -28,7 +29,7 @@ const reducer = ( state = initialState, action) => {
       case "GET_BY_ID":
         return {
         ...state, 
-        countriesCopy: action.payload,
+        pais: action.payload,
       }
 
       case "SORT":
@@ -126,6 +127,21 @@ const reducer = ( state = initialState, action) => {
               allActivities: [...state.allActivities, action.payload],
             }
 
+            case "FIND":
+              const paises = [];
+              const acti = "Luces"
+              state.allActivities.forEach(actividad => {
+                if (actividad.name === acti) {
+                   actividad.Countries.forEach(pais => {
+                     paises.push(pais.name);
+                   });
+                }
+               });
+               const paisesFiltrados = state.allCountries.filter(obj => paises.includes(obj.name))
+               return {
+                ...state,
+                countriesCopy: paisesFiltrados
+               }
     default: 
      return {
       ...state

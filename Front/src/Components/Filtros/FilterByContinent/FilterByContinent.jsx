@@ -1,27 +1,24 @@
-import  {React, useState } from 'react'
+import  {React, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { filterCountries, orderCountries } from '../../../Redux/Actions/actions'
+import { filterCountries, findActivities } from '../../../Redux/Actions/actions'
 
 const FilterByContinent = () => {
 
   const dispatch = useDispatch()
 
-  const [ orderBy, setOrderBy ] = useState('');
+  const [ orderBy, setOrderBy ] = useState("");
   const [ filter, setFilter ] = useState('ALL');
   const allCountries = useSelector((state) => state.allCountries)
-  const countriesCopy = useSelector((state) => state.countriesCopy)
   const orderOptions = useSelector((state)=> state.allActivities)
   const Options = orderOptions.map( option => option.name)
-  
-  // console.log(Options)
+
+  console.log(orderOptions)
   console.log(allCountries)
-  // console.log(countriesCopy)
-  
- 
+
+
   const handleFilter = (event) => {
     dispatch(filterCountries(event.target.value))
-    console.log(event.target.value)
-  
+    
   } 
 
   const handleFilterChange = (event) => {
@@ -29,7 +26,11 @@ const FilterByContinent = () => {
  };
 
  const handleAct = (event) => {
-  dispatch(orderCountries(event.target.value))
+  setOrderBy(event.target.value)
+  console.log(orderBy)
+  console.log(event.target.value)
+  dispatch(findActivities(orderBy))
+  
 }
  
   return (
@@ -56,7 +57,7 @@ const FilterByContinent = () => {
                 
                    <label htmlFor="filter">Actividad
         {filter !== "Activities" ? null : <select value={orderBy} onChange={handleAct}>
-                            <option value="">None</option>
+                            <option value={orderBy}>None</option>
                               {Options.map((option) => (
                             <option key={option} value={option}>
                               {option}

@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { getCountries } from '../../Redux/Actions/actions'
+import React from 'react'
+
 import Card from '../Card/Card'
 import "./Cards.css"
 import { useSelector, useDispatch } from 'react-redux'

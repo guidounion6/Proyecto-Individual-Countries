@@ -10,7 +10,7 @@ import './Detail.css'
 const Details = () => {
 
   
-const { name, flags, continents, population, capital } = useSelector((state) => state.countriesCopy)
+const { name, flags, continents, population, capital } = useSelector((state) => state.pais)
 
 
 const {id} = useParams() 

@@ -22,7 +22,7 @@ const [activities, setActivities] = useState([]);
    }
  },[]);
 
-
+ 
   return (
     <div>
 
@@ -30,7 +30,7 @@ const [activities, setActivities] = useState([]);
       <ul>
         {activities.map(activity => (
           <li key={activity.id}>
-            {activity.name} - Dificultad: {activity.dificultad} - Duracion: {activity.duracion} min - Temporada: {activity.temporada}
+          Name: {activity.name} - Dificultad: {activity.dificultad} - Duracion: {activity.duracion} min - Temporada: {activity.temporada}
           </li>
         ))}
       </ul>

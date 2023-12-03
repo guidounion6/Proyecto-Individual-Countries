@@ -21,7 +21,7 @@ const handleSort = (event) => {
 
  const handleOrder = (event) => {
    dispatch(orderCountries(event.target.value))
-   console.log(event.target)
+   
 }
 
 
