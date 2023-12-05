@@ -11,9 +11,7 @@ const NavBar = ({handleChange, handleSubmit}) => {
   const dispatch = useDispatch()
   const allCountries = useSelector((state) => state.allCountries)
   const state = useSelector((state) => state.orderBy)
-  console.log(state)
-  
-
+ 
 
 const handleSort = (event) => {
     dispatch(sortCountries(event.target.value))
@@ -28,7 +26,7 @@ const handleSort = (event) => {
   return (
      
   <div >
-        <SearchBar  handleChange={handleChange} handleSubmit={handleSubmit}  /> 
+        <SearchBar  handleChange={handleChange} handleSubmit={handleSubmit} className='search-box'  /> 
         <FilterByContinent/>  
       <div>
         {allCountries.length == 0 ? null : 
@@ -47,8 +45,8 @@ const handleSort = (event) => {
                    <option value="D">Descendente </option>
           </select> }
       </div>
-        
-     </div>
+
+  </div>
     
   )
 }

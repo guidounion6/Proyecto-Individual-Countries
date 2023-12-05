@@ -129,15 +129,16 @@ const reducer = ( state = initialState, action) => {
 
             case "FIND":
               const paises = [];
-              const acti = "Luces"
-              state.allActivities.forEach(actividad => {
-                if (actividad.name === acti) {
+              let activities = [...state.allActivities]
+              let todosPaises = [...state.allCountries]
+              activities.forEach(actividad => {
+                if (actividad.name === action.payload) {
                    actividad.Countries.forEach(pais => {
                      paises.push(pais.name);
                    });
                 }
                });
-               const paisesFiltrados = state.allCountries.filter(obj => paises.includes(obj.name))
+               const paisesFiltrados = todosPaises.filter(obj => paises.includes(obj.name))
                return {
                 ...state,
                 countriesCopy: paisesFiltrados

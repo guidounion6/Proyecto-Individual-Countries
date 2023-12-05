@@ -6,10 +6,10 @@ const Card = ({id, name, flags, continents}) => {
 
   return (
     <div className='card-container' >
-      <Link to={`/home/${id}`}>
-      <h1>{name}</h1>
+      <Link to={`/home/${id}`} className='enlace'>
+      <h1 className='Nombre'>{name}</h1>
       <h2>{continents}</h2>
-      <img src={flags}/>
+      <img src={flags} className='flagsImage'/>
       </Link>
       
     </div>

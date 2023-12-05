@@ -12,11 +12,7 @@ const Home = () => {
   const dispatch = useDispatch()
   const allCountries = useSelector((state) => state.countriesCopy)
   const allActivities = useSelector((state)=> state.allActivities)
-  console.log(allCountries)
-  
-  
-  
-  
+
   //trae a todos los paises en el home 
   const handleClick = () => {
     dispatch(getCountries())
@@ -28,7 +24,7 @@ const Home = () => {
 
   return (
     <div className='Home'>
-      <h2 className='Home-title'>Estas en el Home</h2>
+      <h2 className='Home-title'>Bienvenido a PAISES!</h2>
 
       <button type='text' onClick={handleClick} >Traer a todos los paises</button>
       <Link to='/form' > <button> Crear actividad </button> </Link>

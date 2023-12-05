@@ -61,28 +61,3 @@ const OrderByComponent = () => {
 
 export default OrderByComponent;
 
-
-
-// import React, { useState } from 'react';
-
-// function App() {
-//  const [filter, setFilter] = useState('ALL');
-
-//  const handleFilterChange = (e) => {
-//     setFilter(e.target.value);
-//  };
-
-//  return (
-//     <div className="App">
-//       <input value="ALL" type="radio" id="ALL" name="filter" onChange={handleFilterChange} />
-//       <input value="CATEGORY_1" type="radio" id="CATEGORY_1" name="filter" onChange={handleFilterChange} />
-//       <input value="CATEGORY_2" type="radio" id="CATEGORY_2" name="filter" onChange={handleFilterChange} />
-
-//       {filter === 'ALL' && <p>Se muestra el contenido para todas las categorías</p>}
-//       {filter === 'CATEGORY_1' && <p>Se muestra el contenido para la categoría 1</p>}
-//       {filter === 'CATEGORY_2' && <p>Se muestra el contenido para la categoría 2</p>}
-//     </div>
-//  );
-// }
-
-// export default App;

@@ -1,8 +1,8 @@
 .cards-list {
     width: 85vw;
-    display: grid;
+    display: flex;
     background-color: transparent;
-
+    flex-wrap: wrap;
     margin: 0 auto;
     grid-template-columns: 1fr 1fr 1fr 1fr;
    

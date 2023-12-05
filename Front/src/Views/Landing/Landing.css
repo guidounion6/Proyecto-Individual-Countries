@@ -1,0 +1,14 @@
+body{
+    background-image: url(./filipinas.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-color: grey;
+    background-size: cover;
+    justify-content: center;
+    align-self: auto;
+    align-items: center;
+    display: flex;
+    color-scheme: light dark;
+    color: rgba(255, 255, 255, 0.87);
+    background-color: #242424;
+}

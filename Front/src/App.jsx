@@ -1,7 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { getCountriesByName } from '../src/Redux/Actions/actions'
 import { useState } from 'react'
-import { useDispatch, useSelector} from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 
 

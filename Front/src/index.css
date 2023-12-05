@@ -2,10 +2,12 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+  background-image: url(https://estaticos-cdn.prensaiberica.es/clip/7a3cd6b6-87c7-49c2-9169-4c990b724aff_woman-libre-1200_default_0.webp);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -26,14 +28,12 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
+  align-items: center;
   min-width: 320px;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
+
 
 button {
   border-radius: 8px;

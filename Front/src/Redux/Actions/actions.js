@@ -118,8 +118,8 @@ export const sortCountries = (sort) => {
 export const findActivities = (find) => {
     return {
         type: "FIND",
-        payload: find
-    }
+        payload: find, 
+     }
 }
 
 
