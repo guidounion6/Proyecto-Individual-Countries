@@ -4,16 +4,16 @@ import './Landing.css'
 
 const Landing = () => {
   return (
-    <div>
-    <div>
-      <button>
-      <Link to='/home'> Ingresar al Home </Link>
+  
+    <div className='LandingPage' >
+      <h1 className='botonLanding'>
+      <button  className='botonInicio'>
+      <Link to='/home'> Bienvenido a Paises </Link>
       </button>
-      <video muted autoplay loop >
-        <source  src/>
-      </video>
+      </h1>
+
     </div>
-    </div>
+    
   )
 }
 

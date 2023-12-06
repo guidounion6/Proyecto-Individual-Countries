@@ -76,13 +76,12 @@ import axios from 'axios'
 
 
  export const createActivity = (input) => {
-    
-    try {
-        const endpoint = ("http://localhost:3001/activities/")
+    console.log(input)
+     try {
+        const endpoint = ("http://localhost:3001/activities")
         return async (dispatch) => {
             const { data } = await axios.post(endpoint, input)
             return dispatch({
-                
                 type: "CREATE_ACTIVITY",
                 payload: data
             })  

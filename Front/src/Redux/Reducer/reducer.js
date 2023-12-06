@@ -129,9 +129,8 @@ const reducer = ( state = initialState, action) => {
 
             case "FIND":
               const paises = [];
-              let activities = [...state.allActivities]
               let todosPaises = [...state.allCountries]
-              activities.forEach(actividad => {
+              state.allActivities.forEach(actividad => {
                 if (actividad.name === action.payload) {
                    actividad.Countries.forEach(pais => {
                      paises.push(pais.name);

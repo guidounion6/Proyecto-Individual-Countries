@@ -7,12 +7,12 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-  background-image: url(https://estaticos-cdn.prensaiberica.es/clip/7a3cd6b6-87c7-49c2-9169-4c990b724aff_woman-libre-1200_default_0.webp);
-
+  
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+ 
 }
 
 a {
@@ -23,17 +23,6 @@ a {
 a:hover {
   color: #535bf2;
 }
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  align-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-
 
 button {
   border-radius: 8px;
@@ -59,11 +48,10 @@ button:focus-visible {
     color: #213547;
     background-color: #ffffff;
   }
-  a:hover {
-    color: #747bff;
-  }
+  
   button {
     background-color: #f9f9f9;
   }
-}
+  }
+  
 

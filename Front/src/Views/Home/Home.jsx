@@ -20,7 +20,7 @@ const Home = () => {
   
   useEffect(()=>{
     dispatch(getActivities())
-  },[])
+  },[dispatch])
 
   return (
     <div className='Home'>
