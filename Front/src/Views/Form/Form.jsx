@@ -1,33 +1,39 @@
-import { React, useEffect } from 'react'
 import { useState } from 'react'
+import { React, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 
-import { createActivity, getActivities } from '../../Redux/Actions/actions'
-import './Form.css'
 
+import { createActivity, getActivities, getCountries } from '../../Redux/Actions/actions'
+
+import './Form.css'
 
 
 const Form = () => {
 
-const activities = useSelector((state)=> state.allActivities) 
 const dispatch = useDispatch()
-const Estaciones = ["Primavera", "Verano", "Otoño", "Invierno"]
+
+const countries = useSelector((state)=> state.allCountries)
+const activities = useSelector((state)=> state.allActivities) 
+
+
+
 
 const validate = (input)=> {
 
   let error = {}
 
-  if( !input.nombre || !/^[A-Za-z0-9\s]+$/.test(input.nombre))
+  if( !input.name || !/^[A-Za-z0-9\s]+$/.test(input.name))
     error.name = "Formato invalido"
    
   if( !input.dificultad || input.dificultad < 0 && input.dificultad > 5 )
      error.dificultad = "Ingresa un numero entre 1 y 5"
 
-  if(!input.duracion || input.duracion < 0 && input.duracion > 100 )
-    error.duracion = 'Ingresa un entero entre 0 y 100'
+  if (!input.duracion ) error.duracion = 'Ingresa un entero entre 1 y 100'
+  if (input.duracion < 0 && input.duracion > 100 ) 
+  error.duracion = 'El numero debe estar comprendido entre 1 y 100'
 
-  // if( !input.temporada )
-  //   error.temporada = 'Elije alguna de las 4 estaciones'
+  if( !input.temporada )
+    error.temporada = 'Elije alguna de las 4 estaciones'
 
   if(!input.idPais || input.idPais.length === 0 )
     error.idPais = "Elige entre 1 y 3 paises" 
@@ -39,7 +45,7 @@ const validate = (input)=> {
 
 const [input, setInput] = useState({
   name: "",
-  dificultad:"",
+  dificultad: "",
   duracion: "",
   temporada: "",
   idPais: []
@@ -58,24 +64,53 @@ const handleChange = (event)=>{
   setError(validate({...input, [event.target.name]: event.target.value}))
 }
 
-console.log(input)
+const handleCountries = (event)=>{
+  input.idPais.forEach((country, index)=>{
+    if (country === event.target.value) throw alert ("Pais ya elegido")
+  }) 
+  if ( input.idPais.length < 3 )
+  {setInput({...input, idPais: [...input.idPais, event.target.value]})
+  setError(validate({...input, [event.target.name]: event.target.value}))
+} else 
+{throw alert ("Ya has elegido 3 paises")}
+}
 
 const handleInput = (event, input)=>{
   event.preventDefault()
-  console.log(input)
   dispatch(createActivity(input))
   alert("Actividad Creada")
 }
 
+
+const onClose = (name) =>{
+  let paises = input.idPais
+  const {id} = countries.find(country => country.name === name)
+  const paisesFiltered = paises.filter(pais => pais !==id)
+  setInput({...input, idPais: paisesFiltered})
+ 
+  }
+  
+const showCountries = () => {
+    return input.idPais.map((pais, index) => {
+      const country = countries.find(item => item.id === pais)
+      return (
+        <div key={index}>
+          <h2 className='card-container'>{country.name}</h2>
+          <button onClick={() => onClose(country.name)}>X</button>
+        </div>
+      )
+    })
+  }
+
 useEffect(()=>{
   dispatch(getActivities())
+  dispatch(getCountries())
 },[dispatch])
-
 
 
   return (
     <div>
-<form  onSubmit = {(event) => {handleInput(event, input)}}  >
+<form onSubmit = {(event) => {handleInput(event, input)}} >
   <div>
     <label htmlFor='name'>Nombre: </label>
     <input  type='text' name="name" id="name" value={input.value} onChange={handleChange} placeholder={error.name}/>
@@ -99,18 +134,32 @@ useEffect(()=>{
           </select>
   </div>
   <div>
-    <label htmlFor='idPais'>Pais: </label>
-    <input  name="idPais" id="idPais" value={input.value} onChange={handleChange} placeholder={error.idPais}/>
+    <label htmlFor='idPais'>Pais:
+      <select name='idPais' id='idPais' value={input.value} onChange={handleCountries}>
+            <option value=''>Elige de 1 a 3 paises</option>
+              {countries.map((countries) => (
+            <option key={countries.id} value={countries.id}>
+              {countries.name}
+            </option>
+           ))}
+      </select>    
+    </label>
+   
   </div>
   <div>
-   {error.nombre  || error.dificultad || error.duracion || error.temporada || error.idPais 
-  ? null : <button type='submit' className='boton'> 
+   <button type='submit' className='boton' disabled={ error.name  || error.dificultad || error.duracion || error.temporada || error.idPais }> 
            <span> Crear Actividad </span> 
-           </button>}
+           </button>    
   </div>         
   </form>
+  {showCountries()}
 </div>
   )
 }
 
 export default Form
+
+
+
+
+

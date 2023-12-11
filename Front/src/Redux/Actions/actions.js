@@ -99,14 +99,6 @@ export const sortCountries = (sort) => {
     }
 }
 
- export const orderCountries = (order) => {
-    return {
-        type: "ORDER",
-        payload: order
-    }
-
-}
-
  export const filterCountries = (filter)=> {
     return {
         type: "FILTER",

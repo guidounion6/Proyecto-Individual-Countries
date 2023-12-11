@@ -14,19 +14,14 @@ const Home = () => {
   const allActivities = useSelector((state)=> state.allActivities)
 
   //trae a todos los paises en el home 
-  const handleClick = () => {
-    dispatch(getCountries())
-  }
-  
   useEffect(()=>{
+    dispatch(getCountries())
     dispatch(getActivities())
   },[dispatch])
 
   return (
     <div className='Home'>
       <h2 className='Home-title'>Bienvenido a PAISES!</h2>
-
-      <button type='text' onClick={handleClick} >Traer a todos los paises</button>
       <Link to='/form' > <button> Crear actividad </button> </Link>
       <Cards allCountries={allCountries} />
     </div>

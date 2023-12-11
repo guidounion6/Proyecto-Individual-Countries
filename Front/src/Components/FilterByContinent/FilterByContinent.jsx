@@ -1,27 +1,27 @@
 import  {React, useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { filterCountries, findActivities } from '../../../Redux/Actions/actions'
+import { useLocation } from 'react-router-dom'
+import { filterCountries, findActivities } from '../../Redux/Actions/actions'
 
 const FilterByContinent = () => {
 
   const dispatch = useDispatch()
+  const { pathname } = useLocation()
   
 
   const [ orderBy, setOrderBy ] = useState('')
-  const [ filter, setFilter ] = useState('ALL');
+
   const allCountries = useSelector((state) => state.allCountries)
   const orderOptions = useSelector((state)=> state.allActivities)
   const final = useSelector ((state)=> state.countriesCopy)
+  
   const Options = orderOptions.map( option => option.name)
 
   const handleFilter = (event) => {
+    if (event.target.value === '') {alert("Selecciona un continente")}
     dispatch(filterCountries(event.target.value))
     
   } 
-
-  const handleFilterChange = (event) => {
-    setFilter(event.target.value);
- };
 
  const handleFind = (event) => {
   setOrderBy(event.target.value)
@@ -31,16 +31,15 @@ useEffect(()=>{
   dispatch(findActivities(orderBy))
 },[orderBy])
 
+
+
   return (
-   <div >
-        {allCountries.length == 0 ? null : 
-          <form  onChange={handleFilter}>
-                   <input value="ALL" type="radio" id="ALL" name="filter" onChange={handleFilterChange} />
-                   <label htmlFor="filter">Todos</label>
-                   <input value="Continents" type="radio" id="Continents" name="filter" onChange={handleFilterChange}  />
-                   <label htmlFor="filter">Continentes</label>
-        {filter !== "Continents" ? null : <select name="Continents" id="Continents">
-                        <option value="Todos">Selecciona un continente</option>
+   <div > 
+          { pathname !== '/home' ? null : <form  onChange={handleFilter}>
+                    <label htmlFor="filter">Continentes: </label>
+                      <select name="Continents" id="Continents">
+                        <option value='' >Selecciona un continente</option>
+                        <option value="Todos">Todos</option>
                         <option value="Africa">Africa</option>
                         <option value="Antarctica">Antarctica</option>
                         <option value="Asia">Asia</option>
@@ -48,21 +47,18 @@ useEffect(()=>{
                         <option value="Oceania">Oceania</option>
                         <option value="North America">North America</option>
                         <option value="South America">South America</option>
-                      </select> }
+                      </select> 
 
-                   <input value="Activities" type="radio" id="Activities" name="filter" onChange={handleFilterChange} />
-                      
-                
-                   <label htmlFor="filter">Actividad
-        {filter !== "Activities" ? null : <select value={orderBy} onChange={handleFind}>
-                            <option value=''>None</option>
+                    <label htmlFor="filter">Actividad: 
+                      <select value={orderBy} onChange={handleFind}>
+                            <option value='ALL'>None</option>
                               {Options.map((option) => (
                             <option key={option} value={option}>
                               {option}
                             </option>
                            ))}
-                      </select> }
-                   </label>
+                      </select> 
+                    </label>
          
           </form>}
       </div>     

@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, useNavigate } from 'react-router-dom'
 import { getCountriesByName } from '../src/Redux/Actions/actions'
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
@@ -16,6 +16,7 @@ const App = ()=> {
    
   const dispatch = useDispatch()
   const { pathname } = useLocation()
+  const navigate = useNavigate()
   
   const [searchString, setSearchString] = useState("")
 
@@ -26,7 +27,10 @@ const App = ()=> {
 
   const handleSubmit =(event)=>{
     event.preventDefault()
+    if (pathname !== 'home'){
     dispatch(getCountriesByName(searchString))
+    navigate('/home')
+  }
   }
 
 

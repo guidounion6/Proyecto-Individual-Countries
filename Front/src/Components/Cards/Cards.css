@@ -10,3 +10,13 @@
 
 }
 
+  .encendido:hover {
+    background-color: #646cff;
+  }
+
+ .encendido:disabled{
+background-color: #119080;
+ }
+ 
+    
+  

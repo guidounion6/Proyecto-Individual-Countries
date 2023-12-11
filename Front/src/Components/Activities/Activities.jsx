@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { React, useState, useEffect }from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getActivities, getCountryById } from '../../Redux/Actions/actions'
+
 
 const Activities = ({id}) => {
 
@@ -22,7 +21,8 @@ const [activities, setActivities] = useState([]);
    }
  },[]);
 
- 
+ console.log(activities)
+
   return (
     <div>
 
