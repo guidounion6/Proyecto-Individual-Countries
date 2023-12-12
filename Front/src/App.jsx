@@ -35,7 +35,7 @@ const App = ()=> {
 
 
   return (
-    <div>
+    <>
       {pathname !== '/' &&  <NavBar handleSubmit={handleSubmit} handleChange={handleChange}  />  }
          <Routes>
           <Route path='/' element={<Landing/>} />
@@ -44,7 +44,7 @@ const App = ()=> {
           <Route path='/home/:id' element={<Detail/>} />   
          </Routes>
 
-    </div>
+    </>
   )
 }
 

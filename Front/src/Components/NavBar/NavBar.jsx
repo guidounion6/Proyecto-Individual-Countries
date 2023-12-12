@@ -20,24 +20,34 @@ const handleSort = (event) => {
 } 
 
  
-  return (
-     
-  <div >
-        <SearchBar  handleChange={handleChange} handleSubmit={handleSubmit} className='search-box'  /> 
-        <FilterByContinent/>  
-      <div>
-        {allCountries.length == 0 || pathname !== '/home' ? null : 
-          <select name="sort" id="sort"  onChange={handleSort}>
-                    <option value="">Elige una opción</option>
-                    <option value="AA">Por nombre ascendente</option>
-                    <option value="AD">Por nombre descendente</option>
-                    <option value="PA">Por Poblacion ascendente</option>        
-                    <option value="PD">Por Poblacion descendente</option>        
-          </select> }
-      </div>  
+return (
+  <div className="navbar">
+    <SearchBar
+      handleChange={handleChange}
+      handleSubmit={handleSubmit}
+    />
+    <div className="filters">
+      <FilterByContinent />
+      <>
+        {allCountries.length == 0 || pathname !== "/home" ? null : (
+          <>
+          <label htmlFor="sort">Orden: </label>
+          <select
+            name="sort"
+            id="sort"
+            onChange={handleSort}
+          >
+            <option value="">Elige una opción</option>
+            <option value="AA">Por nombre ascendente</option>
+            <option value="AD">Por nombre descendente</option>
+            <option value="PA">Por Poblacion ascendente</option>
+            <option value="PD">Por Poblacion descendente</option>
+          </select></>
+        )}
+      </>
+    </div>
   </div>
-    
-  )
+);
 }
 
 export default NavBar

@@ -17,7 +17,6 @@ const activities = useSelector((state)=> state.allActivities)
 
 
 
-
 const validate = (input)=> {
 
   let error = {}
@@ -25,11 +24,11 @@ const validate = (input)=> {
   if( !input.name || !/^[A-Za-z0-9\s]+$/.test(input.name))
     error.name = "Formato invalido"
    
-  if( !input.dificultad || input.dificultad < 0 && input.dificultad > 5 )
+  if( !input.dificultad || input.dificultad < 1 || input.dificultad > 5 )
      error.dificultad = "Ingresa un numero entre 1 y 5"
 
   if (!input.duracion ) error.duracion = 'Ingresa un entero entre 1 y 100'
-  if (input.duracion < 0 && input.duracion > 100 ) 
+  if (input.duracion < 1 || input.duracion > 100 ) 
   error.duracion = 'El numero debe estar comprendido entre 1 y 100'
 
   if( !input.temporada )
@@ -107,54 +106,108 @@ useEffect(()=>{
   dispatch(getCountries())
 },[dispatch])
 
-
-  return (
-    <div>
-<form onSubmit = {(event) => {handleInput(event, input)}} >
-  <div>
-    <label htmlFor='name'>Nombre: </label>
-    <input  type='text' name="name" id="name" value={input.value} onChange={handleChange} placeholder={error.name}/>
+return (
+<>
+<form
+  onSubmit={(event) => {
+    handleInput(event, input);
+  }}
+  className='main-form'
+>
+  <div className='input-container'>
+    <label htmlFor="name">Nombre: </label>
+    <input
+      type="text"
+      name="name"
+      id="name"
+      value={input.value}
+      onChange={handleChange}
+      placeholder={error.name}
+    />
+    {error.dificultad && <span className='span-error'>{error.dificultad}</span>}
   </div>
-  <div>
-    <label htmlFor='dificultad'>Dificultad: </label>
-    <input type='number' name="dificultad" id='dificultad' value={input.value} onChange={handleChange} placeholder={error.dificultad}/>
+  <div className='input-container'>
+    <label htmlFor="dificultad">Dificultad: </label>
+    <input
+      type="number"
+      name="dificultad"
+      id="dificultad"
+      value={input.value}
+      onChange={handleChange}
+      placeholder={error.dificultad}
+    />
+    {error.dificultad && <span className='span-error'>{error.dificultad}</span>}
   </div>
-  <div>
+  <div className='input-container'>
     <label htmlFor="duracion">Duracion (en horas): </label>
-    <input type='number' name="duracion" id="duracion"   value={input.value} onChange={handleChange} placeholder={error.duracion}/>
+    <input
+      type="number"
+      name="duracion"
+      id="duracion"
+      value={input.value}
+      onChange={handleChange}
+      placeholder={error.duracion}
+    />
+    {error.dificultad && <span className='span-error'>{error.dificultad}</span>}
   </div>
-  <div>
-    <label htmlFor='temporada'>Temporada: </label>
-          <select name="temporada" id="temporada" value={input.value} onChange={handleChange}  placeholder={error.temporada}>
-                   <option value="">Estaciones</option>
-                   <option value="Primavera">Primavera</option>
-                   <option value="Verano">Verano</option>
-                   <option value="Otoño">Otoño</option>
-                   <option value="Invierno">Invierno</option>        
-          </select>
+  <div className='input-container'>
+    <label htmlFor="temporada">Temporada: </label>
+    <select
+      name="temporada"
+      id="temporada"
+      value={input.value}
+      onChange={handleChange}
+      placeholder={error.temporada}
+    >
+      <option value="">Estaciones</option>
+      <option value="Primavera">Primavera</option>
+      <option value="Verano">Verano</option>
+      <option value="Otoño">Otoño</option>
+      <option value="Invierno">Invierno</option>
+    </select>
+    {error.dificultad && <span className='span-error'>{error.dificultad}</span>}
   </div>
-  <div>
-    <label htmlFor='idPais'>Pais:
-      <select name='idPais' id='idPais' value={input.value} onChange={handleCountries}>
-            <option value=''>Elige de 1 a 3 paises</option>
-              {countries.map((countries) => (
-            <option key={countries.id} value={countries.id}>
-              {countries.name}
-            </option>
-           ))}
-      </select>    
+  <div className='input-container'>
+    <label htmlFor="idPais">
+      Pais:
     </label>
-   
+      <select
+        name="idPais"
+        id="idPais"
+        value={input.value}
+        onChange={handleCountries}
+      >
+        <option value="">Elige de 1 a 3 paises</option>
+        {countries.map((countries) => (
+          <option
+            key={countries.id}
+            value={countries.id}
+          >
+            {countries.name}
+          </option>
+        ))}
+      </select>
+      {error.dificultad && <span className='span-error'>{error.dificultad}</span>}
   </div>
-  <div>
-   <button type='submit' className='boton' disabled={ error.name  || error.dificultad || error.duracion || error.temporada || error.idPais }> 
-           <span> Crear Actividad </span> 
-           </button>    
-  </div>         
-  </form>
-  {showCountries()}
-</div>
-  )
+  <div className='input-container'>
+    <button
+      type="submit"
+      className="boton"
+      disabled={
+        error.name ||
+        error.dificultad ||
+        error.duracion ||
+        error.temporada ||
+        error.idPais
+      }
+    >
+      <span> Crear Actividad </span>
+    </button>
+  </div>
+</form>
+{showCountries()}
+</>
+);
 }
 
 export default Form

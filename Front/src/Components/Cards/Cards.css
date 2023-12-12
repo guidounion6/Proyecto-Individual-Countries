@@ -1,22 +1,18 @@
 .cards-list {
-    width: 85vw;
-    display: flex;
-    background-color: transparent;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-   
-    grid-gap: 20px;  
+  width: 85vw;
+  display: grid;
+  background-color: transparent;
+  margin: 35px auto;
+  grid-template-columns: repeat(3,1fr);
+  grid-gap: 20px;
 
 }
 
-  .encendido:hover {
-    background-color: #646cff;
-  }
+.encendido:hover {
+  background-color: #646cff;
+}
 
- .encendido:disabled{
+.encendido:disabled{
 background-color: #119080;
- }
- 
-    
+}
   

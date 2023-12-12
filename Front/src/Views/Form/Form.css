@@ -1,0 +1,28 @@
+.main-form {
+    height: 600px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #32cfb5;
+    box-shadow: 0px 0px 30px #f0fdf9;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-container select, input {
+    width: 300px;
+    padding: 5px;
+}
+
+.span-error {
+    font-size: 15px;
+    font-weight: 300;
+    color: red;
+}

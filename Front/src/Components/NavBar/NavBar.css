@@ -1,11 +1,15 @@
-.search-box {
-    
-    border: none;
-    outline: none;
-    padding: 10px;
-    width: 150px;
-    line-height: 30px;
-    margin-bottom: 30px;
-    align-items: end;
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 25px;
+}
 
+.filters {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 25px;
+    gap: 25px;
 }

@@ -22,7 +22,7 @@ const Home = () => {
   return (
     <div className='Home'>
       <h2 className='Home-title'>Bienvenido a PAISES!</h2>
-      <Link to='/form' > <button> Crear actividad </button> </Link>
+      <Link to='/form' > <button className='main-button'> Crear actividad </button> </Link>
       <Cards allCountries={allCountries} />
     </div>
   )
